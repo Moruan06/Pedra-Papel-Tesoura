@@ -27,15 +27,31 @@ function playRound(humanChoice, computerChoice){
     if(computerChoice === "pedra"){
         switch(humanChoice){
             case("papel"):
-                console.log("Papel ganha de pedra, você ganhou!");
+                console.log(`Papel ganha de ${computerChoice}, você ganhou!`);
                 humanScore += 1;
                 break;
             case("tesoura"):
-                console.log("Tesoura perde de pedra, você perdeu ;-;");
+                console.log(`Tesoura perde de ${computerChoice}, você perdeu ;-;`);
                 computerScore +=1;
                 break;
             case("pedra"):
-                console.log("Ambos jogaram pedra, vocês empataram!");
+                console.log(`Ambos jogaram ${computerChoice}, vocês empataram!`);
+                break;
+            default:
+                console.log("Jogada não definida");
+        };
+    }else if(computerChoice === "papel"){
+        switch(humanChoice){
+            case("papel"):
+                console.log(`Ambos jogaram ${computerChoice}, vocês empataram!`);
+                break;
+                case("tesoura"):
+                console.log(`Tesoura ganha de ${computerChoice}, você ganhou!`);
+                humanScore += 1;
+                break;
+                case("pedra"):
+                console.log(`Pedra perde de ${computerChoice}, você perdeu ;-;`);
+                computerScore +=1;
                 break;
             default:
                 console.log("Jogada não definida");
