@@ -39,7 +39,7 @@ function playRound(humanChoice, computerChoice) {
         break;
       default:
         console.log("Jogada não definida");
-    }
+    };
   } else if (computerChoice === "papel") {
     switch (humanChoice) {
       case "papel":
@@ -55,7 +55,7 @@ function playRound(humanChoice, computerChoice) {
         break;
       default:
         console.log("Jogada não definida");
-    }
+    };
   } else if (computerChoice === "tesoura") {
     switch (humanChoice) {
       case "papel":
@@ -71,6 +71,23 @@ function playRound(humanChoice, computerChoice) {
         break;
       default:
         console.log("Jogada não definida");
+    };
+  };
+};
+
+function playGame(){
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    playRound(getHumanChoice(), getComputerChoice());
+    if(humanScore > computerScore){
+        console.log(`Você fez ${humanScore - computerScore} a mais do que o computador, parabéns!`)
+    }else if(computerScore > humanScore){
+        console.log(`Você fez ${computerScore - humanScore} a menos que o computador, você perdeu ;-;`)
+    }else{
+        console.log(`Vocês empataram com ${humanScore} pontos`)
     }
-  }
 }
+
+playGame()
