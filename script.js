@@ -1,90 +1,54 @@
 let humanScore = 0;
 let computerScore = 0;
+const choices = ["pedra", "papel", "tesoura"];
 
 function getComputerChoice() {
-  let computerChoice = Math.floor(Math.random() * 3);
-  switch (computerChoice) {
-    case 0:
-      computerChoice = "pedra";
-      break;
-    case 1:
-      computerChoice = "papel";
-      break;
-    case 2:
-      computerChoice = "tesoura";
-      break;
-  }
-  return computerChoice;
+  let computerChoice = Math.floor(Math.random() * choices.length);
+  return choices[computerChoice];
 }
 
 function getHumanChoice() {
-  let humanChoice = prompt("Escolha sua jogada:");
-  humanChoice = humanChoice.toLowerCase();
-  return humanChoice;
+  let humanChoice;
+  do {
+    humanChoice = prompt("Insira sua escolha(Pedra, Papel ou Tesoura): ");
+  } while (!choices.includes(humanChoice.toLowerCase()));
+  return humanChoice.toLowerCase();
 }
 
 function playRound(humanChoice, computerChoice) {
-  if (computerChoice === "pedra") {
-    switch (humanChoice) {
-      case "papel":
-        console.log(`Papel ganha de ${computerChoice}, você ganhou!`);
-        humanScore += 1;
-        break;
-      case "tesoura":
-        console.log(`Tesoura perde de ${computerChoice}, você perdeu ;-;`);
-        computerScore += 1;
-        break;
-      case "pedra":
-        console.log(`Ambos jogaram ${computerChoice}, vocês empataram!`);
-        break;
-      default:
-        console.log("Jogada não definida");
-    };
-  } else if (computerChoice === "papel") {
-    switch (humanChoice) {
-      case "papel":
-        console.log(`Ambos jogaram ${computerChoice}, vocês empataram!`);
-        break;
-      case "tesoura":
-        console.log(`Tesoura ganha de ${computerChoice}, você ganhou!`);
-        humanScore += 1;
-        break;
-      case "pedra":
-        console.log(`Pedra perde de ${computerChoice}, você perdeu ;-;`);
-        computerScore += 1;
-        break;
-      default:
-        console.log("Jogada não definida");
-    };
-  } else if (computerChoice === "tesoura") {
-    switch (humanChoice) {
-      case "papel":
-        console.log(`Papel perde de ${computerChoice}, você perdeu ;-;`);
-        computerScore += 1;
-        break;
-      case "tesoura":
-        console.log(`Ambos jogaram ${computerChoice}, vocês empataram!`);
-        break;
-      case "pedra":
-        console.log(`Pedra ganha de ${computerChoice}, você ganhou!`);
-        humanScore += 1;
-        break;
-      default:
-        console.log("Jogada não definida");
-    };
-  };
-};
+  if (humanChoice === computerChoice) {
+    console.log("Vocês empataram!");
+  } else if (
+    (humanChoice === "papel" && computerChoice === "pedra") ||
+    (humanChoice === "tesoura" && computerChoice === "papel") ||
+    (humanChoice === "pedra" && computerChoice === "tesoura")
+  ) {
+    console.log(
+      `Você jogou ${humanChoice}, e o computador jogou ${computerChoice}. Você ganhou!!`
+    );
+    humanScore += 1;
+  } else if (
+    (computerChoice === "papel" && humanChoice === "pedra") ||
+    (computerChoice === "tesoura" && humanChoice === "papel") ||
+    (computerChoice === "pedra" && humanChoice === "tesoura")
+  ) {
+    console.log(
+      `Você jogou ${humanChoice}, e o computador jogou ${computerChoice}. Você perdeu!!`
+    );
+    computerScore += 1;
+  }
+}
 
 function playGame(){
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
-    playRound(getHumanChoice(), getComputerChoice());
+    for(let i = 0; i < 5; i++){
+      let humanSelect = getHumanChoice();
+      let computerSelect = getComputerChoice();
+      playRound(humanSelect, computerSelect);
+    }
     if(humanScore > computerScore){
-        console.log(`Você fez ${humanScore - computerScore} a mais do que o computador, parabéns!`)
+        console.log(`Você fez ${humanScore - computerScore} pontos a mais do que o computador, parabéns!`)
     }else if(computerScore > humanScore){
-        console.log(`Você fez ${computerScore - humanScore} a menos que o computador, você perdeu ;-;`)
+        console.log(`Você fez ${computerScore - humanScore} pontos a menos que o computador, você perdeu!`)
     }else{
         console.log(`Vocês empataram com ${humanScore} pontos`)
     }
