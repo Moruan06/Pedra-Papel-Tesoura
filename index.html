@@ -1,12 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    
-</head>
-<body>
-<script src="script.js"></script>
-</body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="container">
+      <div class="titulo">
+        <h1>Pedra, Papel ou Tesoura!</h1>
+        <p>para jogar selecione uma das opções abaixo</p>
+        <p id="resultado">Ganha que fizer 5 pontos primeiro</p>
+      </div>
+      <div class="jogadas">
+        <button id="pedra" onclick="getHumanChoice()">✊</button>
+        <button id="papel" onclick="getHumanChoice()">🖐️</button>
+        <button id="tesoura" onclick="getHumanChoice()">✌️</button>
+      </div>
+      <div class="score">
+        <p id="scoreJogador" data-score="0">Seu Score: </p>
+        <p id="scoreComputador" data-score-comp="0">Score do computador: </p>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
 </html>
