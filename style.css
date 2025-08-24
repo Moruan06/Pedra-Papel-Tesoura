@@ -1,67 +1,77 @@
-:root {
-  --titleFontSize: 3rem;
-  --normalFontSize: 1.5rem;
-}
-
 * {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(orange, pink);
   color: white;
   text-align: center;
+  font-family: sans-serif;
 }
 
 h1 {
-  font-size: var(--titleFontSize);
+  font-size: clamp(2.5rem, 10vw, 4rem);
 }
 
 p {
-  font-size: var(--normalFontSize);
+  font-size: clamp(1rem, 4vw, 1.5rem);
+  padding: 0 15px;
 }
 
 #container {
+  padding: 20px 0;
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  & .jogadas {
-    margin: 10% 0 0;
-    & button {
-      background: none;
-      border: none;
-      font-size: 7rem;
-      transition: 0.5s;
-      &:hover {
-        font-size: 7.5rem;
-      }
-      &:focus {
-        border: 2px solid white;
-        border-radius: 15px;
-        font-size: 7.5rem;
-        background-color: rgba(255, 255, 255, 0.3);
-      }
-    }
-  }
-  & .score {
-    font-size: calc(var(--titleFontSize) - var(--normalFontSize));
-    display: flex;
-    width: 100vw;
-    justify-content: space-around;
-  }
+  justify-content: space-evenly;
+  min-height: 100vh;
 }
 
-.derrota{
-    color: red
-}
-.vitoria{
-    color: greenyellow;
+#container .jogadas {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
 }
 
-#scoreJogador::after{
-    content: attr(data-score);
+#container .jogadas button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: clamp(4.5rem, 20vw, 7rem);
+  transition: transform 0.2s ease-in-out;
+  padding: 10px;
+  border-radius: 15px;
 }
-#scoreComputador::after{
-    content: attr(data-score-comp);
+
+#container .jogadas button:hover,
+#container .jogadas button:focus {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.2);
+  outline: 2px solid white;
+}
+
+#container .score {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  flex-wrap: wrap; 
+  gap: 15px;
+}
+
+.derrota {
+  color: #ff3838;
+  font-weight: bold;
+}
+.vitoria {
+  color: #32ff7e;
+  font-weight: bold;
+}
+
+#scoreJogador::after {
+  content: " " attr(data-score);
+}
+#scoreComputador::after {
+  content: " " attr(data-score-comp);
 }
